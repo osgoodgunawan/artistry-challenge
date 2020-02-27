@@ -1,0 +1,13 @@
+<% if @success %>
+  <h1><%= @success %></h1>
+<% end %>
+
+
+ <h3><%= @artist.name %></h3>
+ <h3><%= @artist.age %></h3>
+ <h3><%= @artist.title %></h3>
+
+
+ <% @artist.instruments.each do |instrument| %>
+  <p><%= instrument.combined_name %></p>
+ <% end %>
