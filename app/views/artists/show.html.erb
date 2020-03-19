@@ -1,0 +1,28 @@
+<% if flash[:success] %>
+  <h1><%= flash[:success] %></h1>
+<% end %>
+
+<h2> <%= @artist.name %> </h2>
+<p> <%= @artist.age %> </p>
+<p> <%= @artist.title %> </p>
+
+
+
+<%= link_to 'Add Instrument', new_artist_instrument_path %>
+<h2>Instruments that I Play</h2>
+<% @artist.instruments.uniq.each do |instrument| %>
+  <p><%= instrument.name %></p>
+<% end %>
+
+<hr>
+<h3>BONUS</h3>
+<p>---------we moved the artist_instrument create form to the show page and put the artist_id in a hidden field-------</p>
+
+<%= form_for @artist_instrument do |f| %>
+  <%= f.hidden_field :artist_id, value: @artist.id %>
+  
+  <%= f.label :instrument_id %>
+  <%= f.collection_select :instrument_id, @instruments, :id, :name %>
+
+  <%= f.submit %>
+<% end %>
